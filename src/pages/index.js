@@ -16,11 +16,21 @@ export const GatsbyQuery = graphql`
 `;
 
 // This query is executed at run time by Apollo.
+// const APOLLO_QUERY = gql`
+//   {
+//     dog(breed: "frise") {
+//       breed
+//       displayImage
+//     }
+//   }
+// `;
+
 const APOLLO_QUERY = gql`
   {
-    dog(breed: "frise") {
-      breed
-      displayImage
+    popular_artists {
+      artists {
+        name
+      }
     }
   }
 `;
@@ -42,9 +52,10 @@ export default ({
         {({ data, loading, error }) => {
           if (loading) return <p>Loading pupper...</p>;
           if (error) return <p>Error: ${error.message}</p>;
-
-          const { displayImage: src, breed } = data.dog;
-          return <img src={src} alt={breed} style={{ maxWidth: 300 }} />;
+          console.log(data);
+          return <h1>data fetched</h1>;
+          // const { displayImage: src, breed } = data.dog;
+          // return <img src={src} alt={breed} style={{ maxWidth: 300 }} />;
         }}
       </Query>
     </div>
