@@ -29,6 +29,7 @@ const APOLLO_QUERY = gql`
   {
     popular_artists {
       artists {
+        id
         name
       }
     }
@@ -53,7 +54,19 @@ export default ({
           if (loading) return <p>Loading pupper...</p>;
           if (error) return <p>Error: ${error.message}</p>;
           console.log(data);
-          return <h1>data fetched</h1>;
+          const {
+            popular_artists: { artists },
+          } = data;
+          return (
+            <>
+              <h1>data fetched</h1>
+              <ul>
+                {artists.map(({ id, name }) => (
+                  <li key={id}>{name}</li>
+                ))}
+              </ul>
+            </>
+          );
           // const { displayImage: src, breed } = data.dog;
           // return <img src={src} alt={breed} style={{ maxWidth: 300 }} />;
         }}
