@@ -2,7 +2,7 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Word from './vocab/Word';
 
-const Vocab = ({ data }) => {
+const Vocab = props => {
   const query = graphql`
     query {
       adjectiveQuery: allVocabWordsJson(filter: { type: { eq: "adj." } }) {
