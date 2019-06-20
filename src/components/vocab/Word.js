@@ -6,7 +6,6 @@ const Word = ({ word: name, definition, type }) => {
       <p>
         <strong>{name}</strong>: {definition} <em>({type})</em>
       </p>
-      <p></p>
     </div>
   );
 };
