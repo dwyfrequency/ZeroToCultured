@@ -12,6 +12,7 @@ module.exports = {
       },
     },
     `gatsby-transformer-json`,
+    `gatsby-plugin-playground`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

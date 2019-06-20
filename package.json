@@ -6,6 +6,7 @@
   "dependencies": {
     "apollo-boost": "^0.1.20",
     "gatsby": "^2.0.19",
+    "gatsby-plugin-playground": "^1.0.6",
     "gatsby-source-filesystem": "^2.1.0",
     "gatsby-source-graphql": "^2.0.6",
     "gatsby-transformer-json": "^2.2.0",
