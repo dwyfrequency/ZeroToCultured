@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Word from './vocab/Word';
 
 const Vocab = ({ data }) => {
-  const adjectiveQuery = graphql`
+  const query = graphql`
     query {
       adjectiveQuery: allVocabWordsJson(filter: { type: { eq: "adj." } }) {
         edges {
@@ -15,12 +15,17 @@ const Vocab = ({ data }) => {
           }
         }
       }
-    }
-  `;
-
-  const verbQuery = graphql`
-    query {
       verbQuery: allVocabWordsJson(filter: { type: { eq: "v." } }) {
+        edges {
+          node {
+            id
+            word
+            definition
+            type
+          }
+        }
+      }
+      nounQuery: allVocabWordsJson(filter: { type: { eq: "n." } }) {
         edges {
           node {
             id
@@ -33,20 +38,26 @@ const Vocab = ({ data }) => {
     }
   `;
 
-  const adjectiveQueryResponse = useStaticQuery(adjectiveQuery);
-  // const verbQueryResponse = useStaticQuery(verbQuery);
+  const response = useStaticQuery(query);
 
-  console.log(adjectiveQueryResponse);
-  // console.log(verbQueryResponse);
-
+  console.log(response);
+  const { adjectiveQuery, nounQuery, verbQuery } = response;
   return (
     <div>
       <h1>Let's Get Wordy</h1>
       <div>
         <h2>Adjectives</h2>
-        {/* {adjectiveQueryResponse.adjectiveQuery.edges.map(({ node }) => (
+        {adjectiveQuery.edges.map(({ node }) => (
           <Word key={node.id} {...node} />
-        ))} */}
+        ))}
+        <h2>Verbs</h2>
+        {verbQuery.edges.map(({ node }) => (
+          <Word key={node.id} {...node} />
+        ))}
+        <h2>Nouns</h2>
+        {nounQuery.edges.map(({ node }) => (
+          <Word key={node.id} {...node} />
+        ))}
       </div>
     </div>
   );
