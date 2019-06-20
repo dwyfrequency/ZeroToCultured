@@ -3,11 +3,12 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Word from './vocab/Word';
 
 const Vocab = ({ data }) => {
-  const query = graphql`
+  const adjectiveQuery = graphql`
     query {
-      allVocabWordsJson {
+      adjectiveQuery: allVocabWordsJson(filter: { type: { eq: "adj." } }) {
         edges {
           node {
+            id
             word
             definition
             type
@@ -16,12 +17,37 @@ const Vocab = ({ data }) => {
       }
     }
   `;
-  const response = useStaticQuery(query);
-  console.log(response);
+
+  const verbQuery = graphql`
+    query {
+      verbQuery: allVocabWordsJson(filter: { type: { eq: "v." } }) {
+        edges {
+          node {
+            id
+            word
+            definition
+            type
+          }
+        }
+      }
+    }
+  `;
+
+  const adjectiveQueryResponse = useStaticQuery(adjectiveQuery);
+  // const verbQueryResponse = useStaticQuery(verbQuery);
+
+  console.log(adjectiveQueryResponse);
+  // console.log(verbQueryResponse);
+
   return (
     <div>
       <h1>Let's Get Wordy</h1>
-      <ul>words will live here</ul>
+      <div>
+        <h2>Adjectives</h2>
+        {/* {adjectiveQueryResponse.adjectiveQuery.edges.map(({ node }) => (
+          <Word key={node.id} {...node} />
+        ))} */}
+      </div>
     </div>
   );
 };
