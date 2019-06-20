@@ -11,5 +11,12 @@ module.exports = {
         url: 'https://rickandmortyapi-gql.now.sh/',
       },
     },
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `./src/data/`,
+      },
+    },
   ],
 };
