@@ -15,6 +15,17 @@ export const GatsbyQuery = graphql`
   }
 `;
 
+// export const wordOfDayQuery = graphql`
+//   {
+//     rickAndMorty {
+//       character(id: 1) {
+//         name
+//         image
+//       }
+//     }
+//   }
+// `;
+
 // This query is executed at run time by Apollo.
 // const APOLLO_QUERY = gql`
 //   {
@@ -51,6 +62,8 @@ export default ({
     </p>
     <div>
       <img src={character.image} alt={character.name} style={{ width: 300 }} />
+      <h2>Word of the Day</h2>
+      <p></p>
 
       <Query query={APOLLO_QUERY}>
         {({ data, loading, error }) => {
