@@ -36,6 +36,9 @@ const APOLLO_QUERY = gql`
   }
 `;
 
+// destructing prop.data.rickAndMorty.character
+// Why dont we have to wrap this in a apollogprovider? Take a look at the browser
+// file https://www.gatsbyjs.org/docs/browser-apis/#wrapRootElement
 export default ({
   data: {
     rickAndMorty: { character },
